@@ -18,8 +18,8 @@ long t; //for timing the serial output
 boolean fill = false;
 boolean newDataReady = 0;
 float weight;
-int closed = 152; //degrees of servo for closed pinch valve 
-int milliliters = 5040; //desired ammount to dispense in gramm
+int closed = 165; //degrees of servo for closed pinch valve 
+int milliliters = 5000; //desired ammount to dispense in gramm
 int slow = 800; //gramms which need to be left when valve starts to close slowly
 int drip = 50; //gramm which need to be left for dripping in the exact ammount
 int drip_pos = 145; //degrees of servo for dripping short before reaching final weight
@@ -34,7 +34,7 @@ void setup() {
 
   LoadCell.begin();
   float calibrationValue; // calibration value (see example file "Calibration.ino")
-  calibrationValue = -14.80; // uncomment this if you want to set the calibration value in the sketch
+  calibrationValue = -16.55; // uncomment this if you want to set the calibration value in the sketch
   long stabilizingtime = 200; // preciscion right after power-up can be improved by adding a few seconds of stabilizing time
   boolean _tare = true; //set this to false if you don't want tare to be performed in the next step
   LoadCell.start(stabilizingtime, _tare);
@@ -46,9 +46,9 @@ void setup() {
     LoadCell.setCalFactor(calibrationValue); // set calibration value (float)
     Serial.println("Startup is complete");
   }
-  pinMode (A1,INPUT); //button for starting the filling
-  pinMode (A2,INPUT); //abort filling
-  pinMode (A3,INPUT); //tare the scale
+  pinMode (A1,INPUT_PULLUP); //button for starting the filling
+  pinMode (A2,INPUT_PULLUP); //abort filling
+  pinMode (A3,INPUT_PULLUP); //tare the scale
 
   
 }
